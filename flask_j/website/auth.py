@@ -1,5 +1,8 @@
 # store routes for authentication
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+from .models import User
+from . import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 auth = Blueprint('auth', __name__)
 
@@ -28,7 +31,12 @@ def register():
             flash('Password must be atleast 7 characters', category='error')
         else:
             # add user to db
+            new_user = User(email=email, username=username, password=generate_password_hash(
+                password, method='sha256'))
+            db.session.add(new_user)
+            db.session.commit()
             flash('Account created!', category='success')
+            return redirect(url_for('views.home'))
 
     return render_template('register.html')
 
