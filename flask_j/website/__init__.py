@@ -9,6 +9,8 @@ def create_app():
     app = Flask(__name__)  # initialize app
     # secure cookie and session data
     app.config['SECRET_KEY'] = 'my_secret_key'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    db.init_app(app)
 
     # import the blueprints
     from .views import views
