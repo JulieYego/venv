@@ -1,4 +1,5 @@
-from flask import Blueprint
+# store routes for authentication
+from flask import Blueprint, render_template
 
 auth = Blueprint('auth', __name__)
 
@@ -6,13 +7,13 @@ auth = Blueprint('auth', __name__)
 @auth.route('login')
 def login():
     # return render_template('login.html')
-    return '<h1>Login</h1>'
+    return render_template('login.html', ship='Wilmon')
 
 
 @auth.route("/register")
 def register():
     # return render_template('register.html')
-    return '<h1>Register</h1>'
+    return render_template('register.html')
 
 
 @auth.route("/logout")
