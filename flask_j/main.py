@@ -5,5 +5,5 @@ from flask_login import UserMixin
 
 app = create_app()
 
-if __name__ == '__main__':
-    app.run(debug=True)  # run application
+if __name__ == "__main__":
+    app.run(debug=True)
